@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucky Draw</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #111;
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 3em;
+      color: gold;
+    }
+    .button-container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      background-color: #f39c12;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.5em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #d35400;
+    }
+    #result {
+      text-align: center;
+      font-size: 2em;
+      margin-top: 30px;
+    }
+    .perfume {
+      position: absolute;
+      width: 100px;
+      animation: float 8s ease-in-out infinite;
+    }
+    .perfume:nth-child(1) {
+      top: 10%;
+      left: 5%;
+      animation-delay: 1s;
+    }
+    .perfume:nth-child(2) {
+      top: 30%;
+      left: 20%;
+      animation-delay: 3s;
+    }
+    .perfume:nth-child(3) {
+      top: 50%;
+      left: 80%;
+      animation-delay: 2s;
+    }
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Lucky Draw 🎉</h1>
+  <div class="button-container">
+    <button id="drawButton">Try Your Luck</button>
+  </div>
+  <div id="result"></div>
+
+  <!-- Perfume Images -->
+  <img src="https://www.sephora.com/productimages/sku/s1674023-main-zoom.jpg" alt="Black Opium" class="perfume">
+  <img src="/path/to/verites-image.png" alt="After the Rain" class="perfume">
+  <img src="/path/to/pose-as-rose-image.jpg" alt="Pose as Rose" class="perfume">
+
+  <script>
+    const drawButton = document.getElementById('drawButton');
+    const resultDiv = document.getElementById('result');
+    let clicked = false;
+
+    drawButton.addEventListener('click', () => {
+      if (clicked) {
+        resultDiv.innerHTML = "You want it that bad, don't you? 🤔";
+        return;
+      }
+      clicked = true;
+
+      const prizes = ["Rain", "Black Opium", "Pose as Rose"];
+      const randomNumber = Math.floor(Math.random() * 10);
+
+      if (randomNumber < 3) {
+        resultDiv.innerHTML = `🎉 Congratulations! You won <b>${prizes[randomNumber]}</b>!`;
+      } else {
+        resultDiv.innerHTML = "😞 Sorry, you lost. Try again next time!";
+      }
+    });
+
+    // Meme on Refresh
+    window.onbeforeunload = function() {
+      return "You want it that bad, don't you?";
+    };
+  </script>
+</body>
+</html>
